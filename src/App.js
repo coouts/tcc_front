@@ -1,5 +1,7 @@
 import React from 'react';
 import './App.css';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
     const handleSubmit = (e) => {
@@ -12,19 +14,23 @@ function App() {
             password: e.target[3].value,
         };
 
-        fetch('http://localhost:5000/api/user/register', {
+        fetch('http://localhost:5004/api/user', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(user),
         })
-        .then(response => response.text())
-        .then(data => {
-            console.log(data);
+        .then(response => {
+            if (response.ok) {
+                toast.success('Você foi cadastrado com sucesso');
+            } else {
+                toast.error('Erro ao cadastrar');
+            }
         })
         .catch(error => {
             console.error('Error:', error);
+            toast.error('Erro ao cadastrar');
         });
     };
 
@@ -43,6 +49,7 @@ function App() {
                         <input type="password" placeholder="Crie uma senha" className="w-full p-3 mb-6 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" />
                         <button type="submit" className="w-full bg-blue-900 text-white p-3 rounded-lg font-semibold">Criar uma conta</button>
                     </form>
+                    <ToastContainer />
                 </div>
             </div>
             <div className="w-1/2 bg-blue-900 flex justify-center items-center">
