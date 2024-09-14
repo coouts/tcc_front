@@ -12,7 +12,3 @@ Funcionalidades até então:
 
 - Tela de cadastro do usuário;
 - Cadastro/salvamento dos dados no MongoDB.
-
-BackEnd e FrontEnd estão tudo no mesmo projeto.
-
-Meu Linkedin - https://www.linkedin.com/in/leticia-c-40908619a/
